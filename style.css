@@ -1,0 +1,18 @@
+body {
+  width: 250px;
+  margin: auto;
+}
+#card, #writing_area {
+  display: flex;
+}
+#card {
+  margin-bottom: 30px;
+}
+#d_btn {
+  margin-left: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
