@@ -10,17 +10,17 @@
 <body>
   <h2>title</h2>
   <div id="app">
-    <div id="card" v-for="(index, i) in todo">
-      <div v-if="check !== true ">
-        <span>{{i}}:{{index}}</span>
+    <div id="card" v-for="(list, i) in todo">
+      <template v-if="todos.isEditing === false">
+        <span>{{i}}:{{list}}</span>
         <button v-on:click="onEdit(true, i)">編集</button>
         <button v-on:click="deleteBtn(i)">削除</button>
-      </div>
-      <div v-if="check === true ">
-        <input v-model="t_text">
-        <button v-on:click="offEdit">確定</button>
+      </template>
+      <template v-if="todos.isEditing === true">
+        <input v-model="todo[i]">
+        <button v-on:click="offEdit(false, i)">確定</button>
         <button v-on:click="deleteBtn(i)">削除</button>
-      </div>
+      </template>
     </div>
 
     <div id="writing_area">
