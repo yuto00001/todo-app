@@ -28,32 +28,30 @@ new Vue({
   el: '#app',
   data: {
     todo: ['name','age','area','gender'],
-    // todo: [
-    //   {a:'name', t_text: ''},
-    //   {a:'age', t_text: ''},
-    //   {a:'area', t_text: ''},
-    //   {a:'gender', t_text: ''},
-    // ],
-    check: false,
+    // check: false,
+    // t_text: '',
     text: '',
-    t_text: '',
+    // isEditing: false,
+    todos: {
+      content: '宿題',
+      isEditing: false,
+    },
   },
   methods: {
-    onEdit(string, index) {
-      this.check = string
-      this.t_text = this.todo[index]
-      console.log(this.todo)
-      console.log(this.t_text)
+    onEdit(boolean, index) {
+      // this.t_text = this.todo[index]
+      this.todos.isEditing = boolean
+      console.log(this)
+      console.log(this.todos.isEditing)
+      console.log(index, this.todo[index])
     },
-    offEdit() {
-      this.check = ''
+    offEdit(boolean) {
+      this.todos.isEditing = boolean
     },
     addBtn() {
       this.todo.push(this.text)
       this.text = ''
-      // focusを動的に当てる
       this.$refs.focusInput.focus()
-
     },
     deleteBtn(index) {
       this.todo.splice(index, 1)
