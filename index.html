@@ -12,22 +12,22 @@
   <div id="app">
     <div id="card" v-for="(list, index) in todos">
 
-      <template v-if="todos[0].isEditing">
-        <input v-model="todos">
+      <template v-if="list.isEditing">
+        <input v-model="list.name">
         <button v-on:click="offEdit(false, index)">確定</button>
-        <button v-on:click="deleteBtn(i)">削除</button>
+        <button v-on:click="deleteBtn(index)">削除</button>
       </template>
 
       <template v-else>
         <span>{{index}}:{{list.name}}</span>
         <button v-on:click="onEdit(true, index)">編集</button>
-        <button v-on:click="deleteBtn(i)">削除</button>
+        <button v-on:click="deleteBtn(index)">削除</button>
       </template>
 
     </div>
 
     <div id="writing_area">
-      <input v-model="todos.text" ref="focusInput">
+      <input v-model="content" ref="focusInput">
       <div v-on:click="addBtn">追加</div>
     </div>
   </div>
