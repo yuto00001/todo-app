@@ -24,37 +24,38 @@ using property is {
 // 編集押した時に、すべてのinputタグが開かないようにしたい
 // そのbutton（若しくはinput）の持つindexのみ開きたい
 
+// テキストが配列なら、要素も配列に。
+
+// まずisEditingを表示させるには、
+
 new Vue({
   el: '#app',
   data: {
-    todo: ['name','age','area','gender'],
-    // check: false,
-    // t_text: '',
-    text: '',
-    // isEditing: false,
-    todos: {
-      content: '宿題',
-      isEditing: false,
-    },
+    // todo: ['name','age','area','gender'],
+    content: '宿題',
+    todos: [
+      {name: 'Vue.js',text: '',isEditing: false,},
+      {name: 'Vue.js',text: '',isEditing: false,},
+      {name: 'Vue.js',text: '',isEditing: false,},
+    ],
   },
   methods: {
+    addBtn() {
+      this.todos.push(this.todos.text)
+      this.todos.text = ''
+      this.$refs.focusInput.focus()
+    },
     onEdit(boolean, index) {
-      // this.t_text = this.todo[index]
       this.todos.isEditing = boolean
       console.log(this)
       console.log(this.todos.isEditing)
-      console.log(index, this.todo[index])
+      console.log(index, this.todos[index])
     },
     offEdit(boolean) {
       this.todos.isEditing = boolean
     },
-    addBtn() {
-      this.todo.push(this.text)
-      this.text = ''
-      this.$refs.focusInput.focus()
-    },
     deleteBtn(index) {
-      this.todo.splice(index, 1)
+      this.todos.splice(index, 1)
     },
   },
 })
