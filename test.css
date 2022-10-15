@@ -1,0 +1,11 @@
+body, #card {
+  width: 250px;
+  margin: auto;
+}
+#writing, #list, #edit-list {
+  display: flex;
+}
+.completed {
+  text-decoration: line-through;
+  color: lightgray;
+}

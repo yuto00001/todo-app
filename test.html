@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>test</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+  <link rel="stylesheet" href="test.css">
 </head>
 <body>
-  <h2>title</h2>
+  <h2>Todo List</h2>
   <div id="app">
-    <my-component v-for="(item, index) in myArray" ></my-component>
+    <div id="writing">
+      <input type="text" placeholder="writing here" v-model="content" ref="focusInput">
+      <button @click="addClick">追加</button>
+    </div>
 
-    <div id="writing_area">
-      <input v-model="text" ref="focusInput">
-      <div v-on:click="addBtn">追加</div>
+    <div id="card" v-for="(todo, i) in todos">
+      <div id="list" v-if="todo.result">
+        <input type="checkbox" v-model="todo.check">
+        <p v-bind:class="{completed: todo.check}">{{i}} : {{todo.name}}</p>
+        <button @click="editClick(i)" v-bind:disabled="todo.check!==false">編集</button>
+        <button @click="deleteClick(i)">削除</button>
+      </div>
+      <div id="edit-list" v-else>
+        <input type="text" v-model="todo.name">
+        <button @click="decisionClick(i)">確定</button>
+      </div>
     </div>
   </div>
   <!-- 開発バージョン、便利なコンソールの警告が含まれています -->
