@@ -1,60 +1,40 @@
+// @click="editClick(i)"を押下した際に、他のすべての要素を触れないようにしたい。
 
-// コンポーネントのオブジェクトを作る
+// チェックの数を完了数としてカウントしたい
 
-// vueインスタンスを作る
+// 削除ではなく、アーカイブをしたい
+// アーカイブからのみ、削除可能にしたい
 
-// html上で命名したタグを作成。
+// 空白のまま要素を追加できないようにしたい
 
-
-var MyComponent = {
-  template: '<div id="card" v-for="(index, i) in todo"><div v-if="check !== true "><span>{{i}}:{{index}}</span><button v-on:click="onEdit(true, i)">編集</button><button v-on:click="deleteBtn(i)">削除</button></div><div v-if="check === true "><input v-model="t_text"><button v-on:click="offEdit">確定</button><button v-on:click="deleteBtn(i)">削除</button></div></div>',
-  created() {
-    this.methods
-  },
-  data() {
-    return {
-      todo: ['name','age','area','gender'],
-      // todo: [
-      //   {a:'name', t_text: ''},
-      //   {a:'age', t_text: ''},
-      //   {a:'area', t_text: ''},
-      //   {a:'gender', t_text: ''},
-      // ],
-      check: false,
-      text: '',
-      t_text: '',
-    }
-  },
-  methods: {
-    onEdit(string, index) {
-      this.check = string
-      this.t_text = this.todo[index]
-      console.log(this.todo)
-      console.log(this.t_text)
-    },
-    offEdit() {
-      this.check = ''
-    },
-    addBtn() {
-      this.todo.push(this.text)
-      this.text = ''
-      // focusを動的に当てる
-      this.$refs.focusInput.focus()
-
-    },
-    deleteBtn(index) {
-      this.todo.splice(index, 1)
-    },
-  },
-}
+// 操作をアニメーションさせたい
 
 new Vue({
   el: '#app',
-  components: {
-    'my-component': MyComponent
-  },
   data: {
-    myArray: []
+    content: '',
+    todos: [
+      {name: '課題a', result: true, check: false},
+      {name: '課題b', result: true, check: false},
+      {name: '課題c', result: true, check: false},
+    ],
+  },
+  methods: {
+    addClick() {
+      this.todos.push({name: this.content, result: true, check: false})
+      this.content = ''
+      this.$refs.focusInput.focus()
+    },
+    editClick(index) {
+      this.todos[index].result = false
+      console.log(this.todos.result)
+      console.log(this.todos)
+    },
+    decisionClick(index) {
+      this.todos[index].result = true
+    },
+    deleteClick(index) {
+      this.todos.splice(index, 1)
+    }
   }
 })
-
