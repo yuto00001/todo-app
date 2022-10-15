@@ -25,34 +25,29 @@ using property is {
 // そのbutton（若しくはinput）の持つindexのみ開きたい
 
 // テキストが配列なら、要素も配列に。
-
-// まずisEditingを表示させるには、
-
 new Vue({
   el: '#app',
   data: {
-    // todo: ['name','age','area','gender'],
-    content: '宿題',
+    content: '',
     todos: [
-      {name: 'Vue.js',text: '',isEditing: false,},
-      {name: 'Vue.js',text: '',isEditing: false,},
-      {name: 'Vue.js',text: '',isEditing: false,},
+      {name: 'aaa',isEditing: false,},
+      {name: 'bbb',isEditing: false,},
+      {name: 'ccc',isEditing: false,},
     ],
   },
   methods: {
     addBtn() {
-      this.todos.push(this.todos.text)
-      this.todos.text = ''
+      this.todos.push({name: this.content,isEditing: false,})
+      this.content = ''
       this.$refs.focusInput.focus()
     },
     onEdit(boolean, index) {
-      this.todos.isEditing = boolean
+      this.todos[index].isEditing = boolean
       console.log(this)
-      console.log(this.todos.isEditing)
-      console.log(index, this.todos[index])
+      console.log(this.isEditing)
     },
-    offEdit(boolean) {
-      this.todos.isEditing = boolean
+    offEdit(boolean, index) {
+      this.todos[index].isEditing = boolean
     },
     deleteBtn(index) {
       this.todos.splice(index, 1)
